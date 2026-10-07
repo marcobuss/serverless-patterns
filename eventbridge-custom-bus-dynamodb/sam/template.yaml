@@ -134,7 +134,7 @@ Resources:
         MaxBatchWindowInSeconds: 0
       RetryPolicy:
         MaxRetryAttempts: 5
-        MaxEventAgeInSeconds: 300
+        MaxEventAgeInSeconds: 3600
         RetryStrategy: ALL
       OnFailureConfiguration:
         Arn: !GetAtt DeadLetterQueue.Arn
@@ -179,11 +179,14 @@ Resources:
       BatchConfiguration:
         MaxBatchSize: 25
         MaxBatchWindowInSeconds: 10
-      # A throttled or rejected call fails the whole batch. Raise these limits
-      # for production so throttling can clear before events are dead-lettered.
+      # A throttled or rejected call fails the whole batch. Delivery stops at
+      # whichever retry limit is reached first; raise MaxRetryAttempts for
+      # production so throttling can clear before events are dead-lettered.
+      # A partially successful call (HTTP 200 with UnprocessedItems) is not
+      # retried and does not reach the dead-letter queue (see README).
       RetryPolicy:
         MaxRetryAttempts: 5
-        MaxEventAgeInSeconds: 300
+        MaxEventAgeInSeconds: 3600
         RetryStrategy: ALL
       OnFailureConfiguration:
         Arn: !GetAtt DeadLetterQueue.Arn

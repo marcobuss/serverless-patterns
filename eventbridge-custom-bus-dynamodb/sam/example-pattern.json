@@ -61,8 +61,7 @@
   "cleanup": {
     "headline": "Cleanup",
     "text": [
-      "1. Delete the stack: <code>sam delete --stack-name STACK_NAME</code>.",
-      "2. Confirm the stack has been deleted: <code>aws cloudformation list-stacks --query \"StackSummaries[?contains(StackName,'STACK_NAME')].StackStatus\"</code>"
+      "From the pattern directory, delete the stack: <code>sam delete</code>."
     ]
   },
   "authors": [
