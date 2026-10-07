@@ -10,7 +10,7 @@ Description: >
   Deliver events from an Amazon EventBridge Custom Event Bus directly to an Amazon
   DynamoDB table using subscriber universal targets (dynamodb:PutItem for single
   writes and dynamodb:BatchWriteItem for batched writes), with no Lambda function
-  in the path.
+  in the path. (uksb-1tthgi812) (tag:eventbridge-custom-bus-dynamodb)
 
 # -----------------------------------------------------------------------------
 # This pattern uses the Amazon EventBridge Custom Event Bus (the AWS::EventsV2
